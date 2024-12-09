@@ -1,35 +1,34 @@
 ﻿@page "/TemplatePlan"
-
-@using Application.Services.Plans
-@inject PlansService plansService
-
-
-  <div>
-
-
-    <BlazorASG.Components.PlansTemplate.T1.ShowPlans1/>
-
-  
-</div>  
+@using BlazorASG.Data.BlazarComponents.Plans.Category.DataModel
+ 
+@inject ISnackbar Snackbar
 
  
-<div>
-    <BlazorASG.Components.PlansTemplate.T1.FeatureList />
+<section  >
 
-</div>
-<div>
-    <BlazorASG.Components.PlansTemplate.T1.FeatureList2 />
-</div>
 
-<div>
-
-    <BlazorASG.Components.PlansTemplate.T1.FeatureList3/>
-</div>
+    <div style="padding:10px!important">
+@* 
+        <BlazorASG.Components.PlansTemplate.T1.FeatureList /> *@
+        <BlazorASG.Components.Category_Plans_Template.TemListCategorys OnClick="Submit" Params="@dataPlansCategory._listcategories" />
+    </div>
  
-<div>
-    <BlazorASG.Components.PlansTemplate.T1.PlanEdit/>
-</div>
 
+    
+ 
 
+</section>
 
+ 
+}
+@code
+{
+    public  DataPlansCategory dataPlansCategory = new DataPlansCategory();
+    private async void Submit(Data.BlazarComponents.Plans.Category.Model.InputCategory inputCategory)
+    {
+        if (inputCategory != null)
+        {
+            Snackbar.Add(inputCategory.Name, Severity.Success);
+        }
+    }
 }
